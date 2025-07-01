@@ -14,7 +14,6 @@ public class Solution {
                 }
             }
         }
-
         int lcs = dp[m][n];
         return (m - lcs) + (n - lcs);
     }
