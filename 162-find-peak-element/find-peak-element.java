@@ -5,13 +5,17 @@ class Solution {
         while (left < right) {
             int mid = left + (right - left) / 2;
 
+            // If the middle element is smaller than its next element
             if (nums[mid] < nums[mid + 1]) {
-                left = mid + 1; // peak lies on right
+                // Peak must be on the right
+                left = mid + 1;
             } else {
-                right = mid;    // peak is at mid or to the left
+                // Peak is on the left or at mid
+                right = mid;
             }
         }
 
-        return left; // or right
+        // left == right → pointing at a peak element
+        return left;
     }
 }
