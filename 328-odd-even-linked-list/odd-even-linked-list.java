@@ -10,27 +10,25 @@
  */
 class Solution {
     public ListNode oddEvenList(ListNode head) {
-        // Edge cases: empty list or single node
-        if (head == null || head.next == null) {
-            return head;
-        }
-        
-        // Initialize pointers
-        ListNode odd = head;           // Points to current odd node
-        ListNode even = head.next;     // Points to current even node
-        ListNode evenHead = even;      // Store head of even list
-        
-        // Traverse and rearrange
+        if (head == null || head.next == null) return head;
+
+        ListNode odd = head;
+        ListNode even = head.next;
+        ListNode evenHead = even;
+
         while (even != null && even.next != null) {
-            odd.next = even.next;      // Link odd to next odd node
-            odd = odd.next;            // Move to next odd node
-            even.next = odd.next;      // Link even to next even node
-            even = even.next;          // Move to next even node
+            // Link next odd
+            odd.next = even.next;
+            odd = odd.next;
+
+            // Link next even
+            even.next = even.next.next;
+            even = even.next;
         }
-        
-        // Connect odd list to even list
+
+        // Append even list at the end of odd list
         odd.next = evenHead;
-        
+
         return head;
     }
 }
