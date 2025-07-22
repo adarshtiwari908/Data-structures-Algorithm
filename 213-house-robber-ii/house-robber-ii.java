@@ -14,15 +14,20 @@ class Solution {
     
     private int robLinear(int[] nums, int start, int end) {
         if (start > end) return 0;
-        int prev2 = 0; // Money robbed up to house i-2
-        int prev1 = 0; // Money robbed up to house i-1
         
-        for (int i = start; i <= end; i++) {
-            int current = Math.max(prev1, prev2 + nums[i]);
-            prev2 = prev1;
-            prev1 = current;
+        int n = end - start + 1; // Number of houses in the range
+        int[] dp = new int[n];
+        
+        // Base cases
+        dp[0] = nums[start]; // First house in the range
+        if (n == 1) return dp[0];
+        dp[1] = Math.max(nums[start], nums[start + 1]); // Max of first two houses
+        
+        // Fill DP array
+        for (int i = 2; i < n; i++) {
+            dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[start + i]);
         }
         
-        return prev1;
+        return dp[n - 1];
     }
 }
