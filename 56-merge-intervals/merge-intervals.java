@@ -1,38 +1,27 @@
 class Solution {
     public int[][] merge(int[][] intervals) {
-        int n = intervals.length;
-        boolean[] visited = new boolean[n];
-        List<int[]> result = new ArrayList<>();
+        if (intervals.length <= 1) return intervals;
 
-        for (int i = 0; i < n; i++) {
-            if (visited[i]) continue;
+        // Step 1: Sort intervals by start time
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
 
-            int start = intervals[i][0];
-            int end = intervals[i][1];
-            visited[i] = true;
+        // Step 2: Create a list to store merged intervals
+        List<int[]> merged = new ArrayList<>();
 
-            boolean merged = true;
-
-            while (merged) {
-                merged = false;
-                for (int j = 0; j < n; j++) {
-                    if (visited[j]) continue;
-
-                    int nextStart = intervals[j][0];
-                    int nextEnd = intervals[j][1];
-
-                    if (nextStart <= end && nextEnd >= start) {
-                        start = Math.min(start, nextStart);
-                        end = Math.max(end, nextEnd);
-                        visited[j] = true;
-                        merged = true;
-                    }
-                }
+        // Step 3: Iterate and merge
+        for (int[] interval : intervals) {
+            // If list is empty or no overlap
+            if (merged.isEmpty() || merged.get(merged.size() - 1)[1] < interval[0]) {
+                merged.add(interval);
+            } else {
+                // Overlap: merge with the last interval
+                merged.get(merged.size() - 1)[1] = Math.max(
+                    merged.get(merged.size() - 1)[1], interval[1]
+                );
             }
-
-            result.add(new int[]{start, end});
         }
 
-        return result.toArray(new int[result.size()][]);
+        // Convert list back to array
+        return merged.toArray(new int[merged.size()][]);
     }
 }
