@@ -13,19 +13,14 @@
  *     }
  * }
  */
-
 class Solution {
     public TreeNode invertTree(TreeNode root) {
-        if (root == null) return null;
-
-        // Recursively invert left and right subtrees
+        if ( root == null ) return null;
         TreeNode left = invertTree(root.left);
         TreeNode right = invertTree(root.right);
-
-        // Swap left and right
-        root.left = right;
+        // swap left and right 
         root.right = left;
-
+        root.left = right;
         return root;
-    }
+   }
 }
