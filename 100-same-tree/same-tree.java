@@ -22,3 +22,8 @@ class Solution {
         && isSameTree(p.right, q.right);
     }
 }
+
+// step 1: if both binary trees are null then true;
+// step 2: if one of the trees == null then false;
+// step 3: first we will check current nodde values are equal or not
+// step 4: Recursively check if the left subtrees are the same and same for right subtrees.
