@@ -17,14 +17,14 @@ class Solution {
     public boolean isValidBST(TreeNode root) {
         Stack<TreeNode> stack = new Stack<>();
         TreeNode prev = null;
-
         while(!stack.isEmpty() || root != null){
             while(root != null){
                 stack.push(root);
                 root = root.left;
             }
+
             root = stack.pop();
-            if (prev != null && root.val <= prev.val){
+            if ( prev != null && root.val <= prev.val ){
                 return false;
             }
             prev = root;
