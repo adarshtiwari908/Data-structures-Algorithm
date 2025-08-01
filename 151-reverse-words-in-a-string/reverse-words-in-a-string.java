@@ -1,15 +1,31 @@
-public class Solution {
+class Solution {
     public String reverseWords(String s) {
-        // Step 1: Trim leading/trailing spaces and split by one or more spaces
-        String[] words = s.trim().split("\\s+");
+        // Trim leading and trailing spaces
+        s = s.trim();
 
-        // Step 2: Reverse the array
-        StringBuilder sb = new StringBuilder();
-        for (int i = words.length - 1; i >= 0; i--) {
-            sb.append(words[i]);
-            if (i != 0) sb.append(" ");
+        StringBuilder result = new StringBuilder();
+        int i = s.length() - 1;
+        int j = i;
+
+        while (i >= 0) {
+            // Move i to the beginning of the current word
+            while (i >= 0 && s.charAt(i) != ' ') {
+                i--;
+            }
+
+            // Append the word
+            result.append(s.substring(i + 1, j + 1)).append(" ");
+
+            // Skip spaces between words
+            while (i >= 0 && s.charAt(i) == ' ') {
+                i--;
+            }
+
+            // Set j to the end of the next word
+            j = i;
         }
 
-        return sb.toString();
+        // Remove trailing space
+        return result.toString().trim();
     }
 }
