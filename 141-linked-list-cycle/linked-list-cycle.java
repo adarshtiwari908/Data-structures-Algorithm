@@ -11,21 +11,15 @@
  */
 public class Solution {
     public boolean hasCycle(ListNode head) {
-        if (head == null || head.next == null) {
-            return false; // No cycle in empty list or single node
-        }
-        
         ListNode slow = head;
         ListNode fast = head;
-        
-        while (fast != null && fast.next != null) {
-            slow = slow.next;          // Move one step
-            fast = fast.next.next;     // Move two steps
-            if (slow == fast) {        // Cycle detected
+        while ( fast != null && fast.next != null ){
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast){
                 return true;
             }
         }
-        
-        return false; // No cycle found
+        return false;
     }
 }
