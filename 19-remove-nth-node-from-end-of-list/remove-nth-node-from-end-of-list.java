@@ -13,15 +13,21 @@ class Solution {
         ListNode dummy = new ListNode(0, head);
         ListNode slow = dummy;
         ListNode fast = dummy;
-        
-        for(int i = 0; i <= n; i++){
+
+        // Step 1: Advance fast by n+1 steps
+        for (int i = 0; i <= n; i++) {
             fast = fast.next;
         }
-        while(fast != null){
+
+        // Step 2: Move both pointers until fast reaches end
+        while (fast != null) {
             slow = slow.next;
             fast = fast.next;
         }
+
+        // Step 3: Remove the nth node from end
         slow.next = slow.next.next;
+
         return dummy.next;
     }
 }
