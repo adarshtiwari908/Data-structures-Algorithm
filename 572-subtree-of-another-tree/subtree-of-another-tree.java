@@ -16,25 +16,14 @@
 class Solution {
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {
         if (root == null) return false;
-        
-        // Check if trees rooted at current node are identical
         if (isSameTree(root, subRoot)) return true;
-        
-        // Recursively check left and right subtrees
         return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
     }
-    
+
     private boolean isSameTree(TreeNode p, TreeNode q) {
-        // Both null - same
         if (p == null && q == null) return true;
-        
-        // One null, other not - different
         if (p == null || q == null) return false;
-        
-        // Values different - different
         if (p.val != q.val) return false;
-        
-        // Recursively check left and right subtrees
         return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
 }
