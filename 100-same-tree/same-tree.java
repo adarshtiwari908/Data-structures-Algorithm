@@ -20,7 +20,6 @@ class Solution {
        return (p.val == q.val) && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
 }
-
 // step 1: if both binary trees are null then true;
 // step 2: if one of the trees == null then false;
 // step 3: first we will check current nodde values are equal or not
